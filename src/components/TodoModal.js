@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { MdOutlineClose } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { v4 as uuid } from 'uuid';
+import toast from 'react-hot-toast';
 import { addTodo } from '../slices/todoSlice';
 import styles from '../styles/modules/modal.module.scss';
 import Button from './Button';
@@ -23,6 +24,10 @@ function TodoModal({ modalOpen, setModalOpen }) {
           time: new Date().toLocaleDateString(),
         })
       );
+      toast.success('Task Added Successfully');
+      setModalOpen(false);
+    } else {
+      toast.error('Title shouldnt be empty.');
     }
   };
   return (
